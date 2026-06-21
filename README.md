@@ -80,4 +80,4 @@ The other four AI panels still run on `MockAI`. The `AIProvider` interface in `l
 - Real OCR / PDF parsing — MockAI simulates based on filename heuristics; a real impl would use a document-intelligence service.
 - Authentication / user accounts — single-user prototype.
 - Server-side persistence — localStorage only.
-- Mobile-first layout — responsive but desktop-primary.
+- Mobile-first layout — responsive but desktop-primary. 
