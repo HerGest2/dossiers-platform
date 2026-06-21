@@ -73,7 +73,7 @@ The assistant is a grounded RAG over the live data, not a decorative chat:
 2. **Generate (server).** `app/api/chat/route.ts` sends that grounding + the question to `claude-opus-4-8` via `@anthropic-ai/sdk`, with a system prompt that forbids inventing process steps, phases, or legal references — Claude answers **only** from the provided context, in the active UI language.
 3. **Safety + fallback.** Anything that mutates state (create / advance / delete a dossier) or navigates the app is still handled by the deterministic local engine and requires explicit user approval. If `ANTHROPIC_API_KEY` is missing or the call fails, the chatbot transparently falls back to the local engine.
 
-The other four AI panels still run on `MockAI`. The `AIProvider` interface in `lib/ai/provider.ts` is the seam to make those real too: implement a `ClaudeProvider` and return it from `getAIProvider()`. Prompts are pre-written in `lib/ai/prompts.ts`.
+The other four AI panels still run on `MockAI`. The `AIProvider` interface in `lib/ai/provider.ts` is the seam to make those real too: implement a `ClaudeProvider` and return it from `getAIProvider()`. Prompts are pre-written in `lib/ai/prompts.ts`. 
 
 ## Out of scope
 
