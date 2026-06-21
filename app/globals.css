@@ -1,0 +1,350 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  /* Soft, eye-catching ambient gradient backdrop */
+  background-color: #f6f7fb;
+  background-image:
+    radial-gradient(1100px 520px at 8% -8%, rgba(99, 102, 241, 0.14), transparent 60%),
+    radial-gradient(1000px 520px at 100% 0%, rgba(217, 70, 239, 0.12), transparent 55%),
+    radial-gradient(900px 600px at 50% 120%, rgba(34, 197, 94, 0.08), transparent 60%);
+  background-attachment: fixed;
+  color: #0f172a;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Brand gradient text (headings, logo) */
+.text-gradient {
+  background-image: linear-gradient(135deg, #4f46e5 0%, #8b5cf6 45%, #d946ef 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Frosted-glass surface used by the header */
+.glass {
+  background-color: rgba(255, 255, 255, 0.72);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+}
+
+/* Subtle card hover lift */
+.card-hover {
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.card-hover:hover {
+  transform: translateY(-3px);
+}
+
+/* Thin custom scrollbar for a cleaner look */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #c7d2fe transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #c7d2fe;
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #a5b4fc;
+}
+
+/* RTL helpers */
+[dir="rtl"] .lucide {
+  /* mirror directional icons automatically */
+}
+
+/* Subtle animation for AI "thinking" states */
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+.animate-pulse-soft {
+  animation: pulse-soft 1.6s ease-in-out infinite;
+}
+
+/* Skeleton */
+.skeleton {
+  background: linear-gradient(90deg, #e2e8f0 0%, #f1f5f9 50%, #e2e8f0 100%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+  border-radius: 0.375rem;
+}
+@keyframes skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ---- Pitch Mode (/present) animations ------------------------------------ */
+
+/* Expanding rings emitted by the Doss orb */
+@keyframes orb-ring {
+  0%   { transform: scale(0.75); opacity: 0.55; }
+  100% { transform: scale(2.1);  opacity: 0; }
+}
+.orb-ring { animation: orb-ring 2.8s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+.orb-ring-fast { animation-duration: 1.5s; }
+
+/* Equalizer bars inside the orb while speaking */
+@keyframes eq {
+  0%, 100% { transform: scaleY(0.28); }
+  50%      { transform: scaleY(1); }
+}
+.eq-bar { transform-origin: bottom center; animation: eq 0.8s ease-in-out infinite; }
+
+/* Gentle continuous breathing for the orb core */
+@keyframes orb-breathe {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.06); }
+}
+.orb-breathe { animation: orb-breathe 3.6s ease-in-out infinite; }
+
+/* Slow drifting aurora background for the pitch stage */
+@keyframes aurora {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(4%, -3%, 0) scale(1.15); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+.aurora { animation: aurora 14s ease-in-out infinite; }
+
+/* Scene enter animation */
+@keyframes scene-in {
+  0%   { opacity: 0; transform: translateY(18px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+.scene-in { animation: scene-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* Caption word reveal */
+@keyframes caption-in {
+  0%   { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.caption-in { animation: caption-in 0.55s ease-out both; }
+
+/* Slow rotation (orb halo, conic rings) */
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.spin-slow { animation: spin-slow 16s linear infinite; }
+.spin-rev { animation: spin-slow 22s linear infinite reverse; }
+
+/* Animated gradient text (headlines) */
+@keyframes text-shimmer {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+.text-animated-gradient {
+  background-image: linear-gradient(100deg, #818cf8, #e879f9, #38bdf8, #818cf8);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: text-shimmer 5s linear infinite;
+}
+
+/* Gentle vertical float */
+@keyframes float-y { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+.float-y { animation: float-y 7s ease-in-out infinite; }
+
+/* Pop-in for slide elements */
+@keyframes pop-in {
+  0%   { opacity: 0; transform: translateY(14px) scale(0.96); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+.pop-in { animation: pop-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* Shine sweep (CTA logo) */
+@keyframes shine-sweep { 0% { transform: translateX(-130%); } 60%, 100% { transform: translateX(240%); } }
+.shine { position: relative; overflow: hidden; }
+.shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, 0.6) 50%, transparent 65%);
+  transform: translateX(-130%);
+  animation: shine-sweep 3.4s ease-in-out infinite;
+}
+
+/* Flowing fill (timeline) */
+@keyframes grow-x { 0% { transform: scaleX(0); } 100% { transform: scaleX(1); } }
+.grow-x { transform-origin: left center; animation: grow-x 1.1s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* Floating particle drift */
+@keyframes particle-drift {
+  0%   { transform: translateY(0) translateX(0); opacity: 0.25; }
+  50%  { opacity: 0.7; }
+  100% { transform: translateY(-40px) translateX(12px); opacity: 0; }
+}
+
+/* Tech grid backdrop (masked) */
+.tech-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 46px 46px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 25%, transparent 75%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 25%, transparent 75%);
+}
+
+/* ---- 60-second cut: cinematic transitions ------------------------------- */
+
+/* Cinematic scene entrance — emerge from a soft blur with depth */
+@keyframes scene-cinematic {
+  0%   { opacity: 0; transform: translateY(22px) scale(0.955); filter: blur(10px); }
+  60%  { filter: blur(0); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+.scene-cinematic { animation: scene-cinematic 1s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+/* Soft cross-dissolve veil on every scene change (scene emerges from dark) */
+@keyframes scene-dissolve {
+  0%   { opacity: 0; }
+  16%  { opacity: 0.72; }
+  100% { opacity: 0; }
+}
+.scene-dissolve {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  opacity: 0; /* invisible unless the fade is actively running (never a stuck veil) */
+  background: radial-gradient(ellipse at center, rgba(12, 14, 32, 0.82), rgba(5, 6, 15, 0.95));
+  animation: scene-dissolve 0.62s ease-in-out both;
+}
+
+/* Central key light behind the stage — slow cinematic breathing */
+@keyframes keylight {
+  0%, 100% { transform: translate(-50%, -50%) scale(1);    opacity: 0.8; }
+  50%      { transform: translate(-50%, -50%) scale(1.12); opacity: 1; }
+}
+.cine-keylight { animation: keylight 10s ease-in-out infinite; }
+
+/* Slow Ken-Burns push — alternated per scene so it never feels static */
+@keyframes ken-a { 0% { transform: scale(1) translateY(0); }    100% { transform: scale(1.06) translateY(-10px); } }
+@keyframes ken-b { 0% { transform: scale(1.06) translateY(8px); } 100% { transform: scale(1) translateY(0); } }
+.ken-a { animation: ken-a 9s ease-out both; }
+.ken-b { animation: ken-b 9s ease-out both; }
+
+/* ---- Cinematic frame: letterbox, vignette, grain, open/close fades -------- */
+
+@keyframes letterbox-in { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+.cine-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 5.2vh;
+  z-index: 15;
+  background: #000;
+  pointer-events: none;
+  animation: letterbox-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.cine-bar-top { top: 0; transform-origin: top; }
+.cine-bar-bottom { bottom: 0; transform-origin: bottom; }
+
+.cine-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 14;
+  pointer-events: none;
+  background: radial-gradient(ellipse 92% 76% at 50% 45%, transparent 54%, rgba(0, 0, 0, 0.58) 100%);
+}
+
+@keyframes grain-shift {
+  0%   { background-position: 0 0; }
+  100% { background-position: 180px 180px; }
+}
+.cine-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 16;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  animation: grain-shift 0.6s steps(6) infinite;
+}
+
+/* Open from black at start; dip to black on finish */
+@keyframes fade-from-black { from { opacity: 1; } to { opacity: 0; } }
+.cine-open {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  pointer-events: none;
+  opacity: 0; /* base hidden — the fade's backwards-fill shows black at t=0, then clears */
+  background: #04050c;
+  animation: fade-from-black 1s ease-out both;
+}
+@keyframes cine-dip { 0% { opacity: 0; } 45% { opacity: 0.92; } 100% { opacity: 0; } }
+.cine-close {
+  position: fixed;
+  inset: 0;
+  z-index: 18;
+  pointer-events: none;
+  opacity: 0; /* base hidden — only the brief dip animation reveals it */
+  background: #04050c;
+  animation: cine-dip 1.1s ease-in-out both;
+}
+
+/* Kinetic headline — gradient text wipes in left-to-right with a soft blur */
+@keyframes title-cine {
+  0%   { opacity: 0; clip-path: inset(0 100% 0 0); transform: translateY(10px); filter: blur(7px); }
+  60%  { filter: blur(0); }
+  100% { opacity: 1; clip-path: inset(0 0 0 0); transform: translateY(0); filter: blur(0); }
+}
+.title-cine { animation: title-cine 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+/* Filmic color-grade wash (brand light bleeding from top & bottom) */
+.cine-grade {
+  position: fixed;
+  inset: 0;
+  z-index: 13;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  background:
+    radial-gradient(120% 80% at 50% -12%, rgba(99, 102, 241, 0.12), transparent 55%),
+    radial-gradient(120% 80% at 50% 112%, rgba(217, 70, 239, 0.12), transparent 55%);
+}
+
+/* Anamorphic light streak that flashes across each cut */
+@keyframes streak {
+  0%   { opacity: 0; transform: scaleX(0.2); }
+  28%  { opacity: 0.9; }
+  100% { opacity: 0; transform: scaleX(1.35); }
+}
+.scene-streak {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 48%;
+  height: 2px;
+  z-index: 31;
+  pointer-events: none;
+  opacity: 0;
+  transform-origin: center;
+  background: linear-gradient(90deg, transparent, rgba(190, 215, 255, 0.95), rgba(150, 190, 255, 0.7), transparent);
+  filter: blur(1px);
+  box-shadow: 0 0 26px 5px rgba(130, 165, 255, 0.5);
+  animation: streak 0.7s ease-out both;
+}
+
+/* Reduced motion: only tame the continuous motions. The brief fades/dissolves
+   are intentional and safe (they default to opacity:0 when not animating). */
+@media (prefers-reduced-motion: reduce) {
+  .cine-grain,
+  .ken-a,
+  .ken-b,
+  .scene-streak,
+  .cine-keylight { animation: none; }
+}
